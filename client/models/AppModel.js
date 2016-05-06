@@ -1,6 +1,8 @@
 // App.js - Defines a backbone model class for the whole app.
 var AppModel = Backbone.Model.extend({
 
+
+  //params is an object passed in from AppModel in the index.html
   initialize: function(params) {
     this.set('currentSong', new SongModel());
     this.set('songQueue', new SongQueue());
@@ -12,15 +14,13 @@ var AppModel = Backbone.Model.extend({
     end up referring to the window. That's just what happens with all JS events. The handlers end up
     getting called from the window (unless we override it, as we do here). */
 
-
+  //params.library is the collection
+  //the third parameter "this", is the context. Callback functions changes the intial context to the window object 
     params.library.on('play', function(song) {
-      console.log(song);
       this.set('currentSong', song);
-
     }, this);
 
     params.library.on('enqueue', function(song) {
-      console.log('enqueue', this);
       this.get('songQueue').add(song);
     }, this);
   }

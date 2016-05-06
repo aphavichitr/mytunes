@@ -6,7 +6,6 @@ var LibraryEntryView = Backbone.View.extend({
   template: _.template('<td>(<%= artist %>)</td><td><%= title %></td>'),
 
   intitialize: function() {
-
   },
 
   events: {

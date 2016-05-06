@@ -8,6 +8,7 @@
     <script src="bower_components/backbone/backbone.js"></script>
 
     <script src="data/data.js"></script>
+    <script src="env/config.js"></script>
 
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
@@ -24,13 +25,17 @@
     <script>
       $(function() {
         // set up model objects
+        //new Songs is a collect of models, we passed in the actual data
         var library = new Songs(songData);
+        //AppModel is the model of the whole application, we are passing in the entire collection of models with raw data.
         var app = new AppModel({library: library});
 
         // build a view for the top level of the whole app
+        //creating a new view, passing in the AppModel
         var appView = new AppView({model: app});
 
         // put the view onto the screen
+        // after we return the appView, we are appending the appView to the body
         $('body').append(appView.render());
       });
     </script>
